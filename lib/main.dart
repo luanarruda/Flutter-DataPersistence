@@ -13,15 +13,38 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
-      home: Stack(
-        alignment: AlignmentDirectional.center,
+      home: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly, //alinha os stacks
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(color: Colors.white,),
-          Container(color: Colors.pink, width: 100, height: 100,),
+          Stack(
+            alignment: AlignmentDirectional.center, //alinha os containers do children no centro
+            children: [
+              Container(color: Colors.white,width: 100, height: 100,),
+              Container(color: Colors.pink, width: 50, height: 50,),
+            ],
+          ),
+          Stack(
+            alignment: AlignmentDirectional.center, //alinha os containers do children no centro
+            children: [
+              Container(color: Colors.pink,width: 100, height: 100,),
+              Container(color: Colors.white, width: 50, height: 50,),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(color: Colors.pinkAccent, height: 50, width: 50,),
+              Container(color: Colors.white, height: 50, width: 50,),
+              Container(color: Colors.purple, height: 50, width: 50,),
+            ],
+          )
         ],
-      ),
-    );
+      )
+
+      );
   }
 }
