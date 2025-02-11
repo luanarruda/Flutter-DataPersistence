@@ -34,13 +34,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String nome;
+
   const Task(this.nome, {Key? key}) : super(key: key);
 
   @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
+  @override
   Widget build(BuildContext context) {
-    int nivel
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -53,8 +59,8 @@ class Task extends StatelessWidget {
                   color: Colors.white,
                   height: 100,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment
-                        .spaceBetween, //vai alinhar tudo dessa linha, o retangulo
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //vai alinhar tudo dessa linha, o retangulo
                     children: [
                       Container(
                         color: Colors.black26,
@@ -64,7 +70,7 @@ class Task extends StatelessWidget {
                       Container(
                           width: 200,
                           child: Text(
-                            nome,
+                            widget.nome,
                             style: TextStyle(
                               fontSize: 24,
                               overflow: TextOverflow
@@ -72,12 +78,18 @@ class Task extends StatelessWidget {
                             ),
                           )),
                       ElevatedButton(
-                          onPressed: () {}, child: Icon(Icons.arrow_drop_up)),
+                          onPressed: () {
+                            setState((){
+                              nivel++;
+                            });
+                            print(nivel);
+                          },
+                          child: Icon(Icons.arrow_drop_up)),
                     ],
                   ),
                 ),
                 Text(
-                  'Nivel: o',
+                  'Nivel: $nivel',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )
               ],
