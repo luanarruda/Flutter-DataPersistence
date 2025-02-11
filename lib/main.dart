@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
         body: ListView(
           children: [
             Task(
-                'Aprender Flutter no café da manha jogando bola dando mortal para trás'),
-            Task('Andar de bike'),
-            Task('Meditar'),
-            Task('Meditar'),
-            Task('Meditar'),
-            Task('Meditar'),
+                'Aprender Flutter', 'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large'),
+            Task('Andar de bike', 'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+            Task('Meditar', 'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg'),
+            Task('Ler', 'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg'),
+            Task('Jogar', 'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg'),
+
           ],
         ),
       ),
@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatefulWidget {
   final String nome;
+  final String foto;
 
-  const Task(this.nome, {Key? key}) : super(key: key);
+  const Task(this.nome, this.foto, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
@@ -63,10 +64,15 @@ class _TaskState extends State<Task> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     //vai alinhar tudo dessa linha, o retangulo
                     children: [
-                      Container(
-                        color: Colors.black26,
-                        width: 72,
-                        height: 100,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom:2),
+                        child: Container(
+                          color: Colors.black26,
+                          width: 72,
+                          height: 100,
+                          child: Image.network(widget.foto,
+                          fit: BoxFit.cover,)
+                        ),
                       ),
                       Container(
                           width: 200,
