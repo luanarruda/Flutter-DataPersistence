@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('Tarefas')),
+        appBar: AppBar(
+            leading: Container(),
+            title: Text('Tarefas')),
         body: ListView(
           children: [
             Task(
@@ -28,7 +30,6 @@ class MyApp extends StatelessWidget {
             Task('Meditar'),
           ],
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {}),
       ),
     );
   }
@@ -77,14 +78,25 @@ class _TaskState extends State<Task> {
                                   .ellipsis, //coloca tres pontinhos no texto q ficou muito grande
                             ),
                           )),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState((){
-                              nivel++;
-                            });
-                            print(nivel);
-                          },
-                          child: Icon(Icons.arrow_drop_up)),
+                      Container(
+                        height: 52,
+                        width: 52,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState((){
+                                nivel++;
+                              });
+                              print(nivel);
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(Icons.arrow_drop_up),
+                                Text('UP', style: TextStyle(fontSize: 12),)
+                              ],
+                            )),
+                      ),
 
                     ],
                   ),
