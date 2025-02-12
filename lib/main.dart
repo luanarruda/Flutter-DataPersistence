@@ -1,3 +1,4 @@
+import 'package:alura_flutter/primeira_tela_estudos.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -52,11 +53,11 @@ class _MyAppState extends State<MyApp> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-          setState(() {
-            opacidade = !opacidade;
-          });
-        },
-        child: Icon(Icons.remove_red_eye),
+            setState(() {
+              opacidade = !opacidade;
+            });
+          },
+          child: Icon(Icons.remove_red_eye),
         ),
       ),
     );
