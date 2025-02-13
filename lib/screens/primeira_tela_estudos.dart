@@ -68,7 +68,7 @@ Container(
 color: Colors.amber,
 height: 30,
 width: 300,
-child: Text(
+child: const Text(
 'Texto de teste',
 style: TextStyle(
 color: Colors.black,
@@ -79,9 +79,9 @@ textAlign: TextAlign.center,
 ),
 ElevatedButton(
 onPressed: () {
-print('Você apertou o botão');
+//print('Você apertou o botão');
 },
-child: Text('Aperte o botão'))
+child: const Text('Aperte o botão'))
 ],
 ),
 );

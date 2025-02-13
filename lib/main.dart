@@ -1,20 +1,14 @@
-import 'package:alura_flutter/initial_screen.dart';
+import 'package:alura_flutter/screens/initial_screen.dart';
 import 'package:flutter/material.dart';
 
 
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -24,7 +18,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: InitialScreen(),
+      home: const InitialScreen(),
     );
   }
 }
