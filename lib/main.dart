@@ -1,5 +1,6 @@
-import 'package:alura_flutter/primeira_tela_estudos.dart';
 import 'package:flutter/material.dart';
+
+import 'difficulty.dart';
 
 void main() {
   runApp(MyApp());
@@ -135,36 +136,8 @@ class _TaskState extends State<Task> {
                                       .ellipsis, //coloca tres pontinhos no texto q ficou muito grande
                                 ),
                               )),
-                          Row(
-                            children: [
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 1)
-                                      ? Colors.pinkAccent
-                                      : Colors.pinkAccent[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 2)
-                                      ? Colors.pinkAccent
-                                      : Colors.pinkAccent[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 3)
-                                      ? Colors.pinkAccent
-                                      : Colors.pinkAccent[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 4)
-                                      ? Colors.pinkAccent
-                                      : Colors.pinkAccent[100]),
-                              Icon(Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 5)
-                                      ? Colors.pinkAccent
-                                      : Colors.pinkAccent[100]),
-                            ],
-                          ),
-                        ],
+                          Difficulty(dificultyLevel: widget.dificuldade,),
+                        ]
                       ),
                       Container(
                         height: 52,
@@ -223,3 +196,4 @@ class _TaskState extends State<Task> {
     );
   }
 }
+
