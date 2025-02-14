@@ -2,7 +2,6 @@ import 'package:alura_flutter/components/task.dart';
 import 'package:flutter/material.dart';
 
 class InitialScreen extends StatefulWidget {
-
   const InitialScreen({Key? key}) : super(key: key);
 
   @override
@@ -23,22 +22,25 @@ class _InitialScreenState extends State<InitialScreen> {
           children: const [
             Task(
                 'Aprender Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                'assets/images/flutter.png',
                 0),
             Task(
                 'Andar de Bike',
-                'https://images.pexels.com/photos/161172/cycling-bike-trail-sport-161172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                'assets/images/bike.jpeg',
                 5),
             Task(
                 'Meditar',
-                'https://manhattanmentalhealthcounseling.com/wp-content/uploads/2019/06/Top-5-Scientific-Findings-on-MeditationMindfulness-881x710.jpeg',
+                'assets/images/meditar.jpeg',
                 3),
             Task(
                 'Ler',
-                'https://thebogotapost.com/wp-content/uploads/2017/06/636052464065850579-137719760_flyer-image-1.jpg',
+                'assets/images/ler.jpg',
                 4),
             Task('Jogar',
-                'https://i.ibb.co/tB29PZB/kako-epifania-2022-2-c-pia.jpg', 1),
+                'assets/images/jogar.jpg', 1),
+            SizedBox(
+              height: 80,
+            )
           ],
         ),
       ),
