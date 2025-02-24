@@ -28,6 +28,8 @@ class _FormScreenState extends State<FormScreen> {
             border: Border.all(width: 3),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -86,6 +88,9 @@ class _FormScreenState extends State<FormScreen> {
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
                     imageController.text,
+                    errorBuilder: (BuildContext context, Object excepetion, StackTrace? stackTrace){
+                      return Image.asset('assets/images/noimage.svg.png');
+                    },
                     fit: BoxFit.cover,
                   ),
                 ),
