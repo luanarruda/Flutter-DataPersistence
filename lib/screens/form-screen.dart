@@ -13,6 +13,7 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController imageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -61,7 +62,7 @@ class _FormScreenState extends State<FormScreen> {
                       validator: (value) {
                         if (value!.isEmpty ||
                             int.parse(value) > 5 ||
-                            int.parse(value) < 1){
+                            int.parse(value) < 1) {
                           return 'Insira uma dificuldade entre 1 e 5 ';
                         }
                         return null;
@@ -85,11 +86,11 @@ class _FormScreenState extends State<FormScreen> {
                         setState(() {});
                       },
                       //on changed, qunado mudar usa oset state ja que estamos em um statefullwidget
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Insira um URL de imagem';
                         }
-                        return  null;
+                        return null;
                       },
                       keyboardType: TextInputType.url,
                       controller: imageController,
@@ -125,12 +126,15 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        if(_formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate()) {
                           print(nameController);
                           print(difficultyController.text);
                           print(imageController);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Salvando nova tarefa')));
                         }
-                        },
+                      },
                       child: const Text('Adicionar'))
                 ],
               ),
