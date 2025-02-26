@@ -15,7 +15,8 @@ class TaskInherited extends InheritedWidget {
     Task('Jogar', 'assets/images/jogar.jpg', 1),
   ];
 
-  void newTask(String name, String photo, int difficulty){
+  void newTask// método
+    (String name, String photo, int difficulty){
     taskList.add(Task(name, photo, difficulty));
   }
 
