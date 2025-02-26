@@ -16,7 +16,9 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       appBar: AppBar(leading: Container(), title: const Text('Tarefas')),
       body: ListView(
-        children: TaskInherited.of(context).taskList, // of context= dentro do contexto
+        children: TaskInherited.of(context).taskList,
+        // of context= dentro do contexto
+        padding: EdgeInsets.only(top: 8, bottom: 70),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
