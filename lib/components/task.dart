@@ -17,6 +17,13 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   int nivel = 0;
 
+  bool assetOrNetwork() {
+    if (widget.foto.contains('http')) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,15 +54,21 @@ class _TaskState extends State<Task> {
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: Colors.black26,),
+                            color: Colors.black26,
+                          ),
                           width: 72,
                           height: 100,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              widget.foto,
-                              fit: BoxFit.cover,
-                            ),
+                            child: assetOrNetwork()
+                                ? Image.asset(
+                                    widget.foto,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.network(
+                                    widget.foto,
+                                    fit: BoxFit.cover,
+                                  ),
                           )),
                     ),
                     Column(
@@ -72,9 +85,10 @@ class _TaskState extends State<Task> {
                                       .ellipsis, //coloca tres pontinhos no texto q ficou muito grande
                                 ),
                               )),
-                          Difficulty(dificultyLevel: widget.dificuldade,),
-                        ]
-                    ),
+                          Difficulty(
+                            dificultyLevel: widget.dificuldade,
+                          ),
+                        ]),
                     SizedBox(
                       height: 52,
                       width: 52,
@@ -83,7 +97,7 @@ class _TaskState extends State<Task> {
                             setState(() {
                               nivel++;
                             });
-                           // print(nivel);
+                            // print(nivel);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
