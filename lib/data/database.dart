@@ -3,7 +3,21 @@ import 'package:path/path.dart';
 
 Future<Database> getDatabase() async {
   final String path = join(await getDatabasesPath(), 'task.db');
-  return openDatabase(path, onCreate: (db, version) {
-    db.execute(tabela)
-  }, version: 1,);
+  return openDatabase(
+    path,
+    onCreate: (db, version) {
+      db.execute(tableSql);
+    },
+    version: 1,
+  );
 } //caminho definido
+
+const String tableSql = 'CREATE TABLE $_tablename('
+    '$_name TEXT, '
+    '$_difficulty INTEGER, '
+    '$_image TEXT)';
+
+const String _tablename = 'taskTable';
+const String _difficulty = 'difficulty';
+const String _name = 'name';
+const String _image = 'image';
