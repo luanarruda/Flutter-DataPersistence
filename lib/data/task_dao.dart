@@ -22,15 +22,18 @@ class TaskDao {
   //ações (metodos) do banco de dados que ficarao em outro arquivo
 
   save(Task tarefa) async {}
+
   //retorna uma lista de tarefas do bd
-  Future<List<Task>> findAll() async{
+  Future<List<Task>> findAll() async {
     print('Acessando o FindAll: ');
-    final Database bancoDeDados = await getDatabase(); //await pq é um feature, entao tem q esperar o banco de dados ser encontrado ou construido para vincular no nosso db
+    final Database bancoDeDados =
+        await getDatabase(); //await pq é um feature, entao tem q esperar o banco de dados ser encontrado ou construido para vincular no nosso db
 
     //os objetos que vamos pegar do db, vem em tipo de Mapa, ent cada tarefa tem uma imagem, nome, valor especifico
     //a chave do mapa sempre serao strings e os valores podem ser alterados(dynamic)
     //mapa do tpo string e dinamico
-    final List<Map<String,dynamic>> result = await bancoDeDados.query(_tablename);
+    final List<Map<String, dynamic>> result =
+        await bancoDeDados.query(_tablename);
     print('Procurando dados no banco de dados... encontrado: $result');
 
     // o metodo find all precisa retornar algo - todo metodo precisa retornar algo
@@ -38,12 +41,13 @@ class TaskDao {
     //na vdd agr retorna mapa (map), entao precisamos transformar
     return toList(result);
   }
+
   //convertendo a lista em Mapa
-  List<Task> toList(List<Map<String,dynamic>> mapaDeTarefas){
+  List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
     print('COnvertendo to List:');
     final List<Task> tarefas = [];
-  // adicionar pra nossa ,isat de tarefas os nossos mapas transformados em tarefas
-    for (Map<String,dynamic> linha in mapaDeTarefas){
+    // adicionar pra nossa ,isat de tarefas os nossos mapas transformados em tarefas
+    for (Map<String, dynamic> linha in mapaDeTarefas) {
       //para cada uma das linhas, vamos crar uma tarefa
       //de acordo com os valores do nosso mapa
       final Task tarefa = Task(linha[_name], linha[_image], linha[_difficulty]);
@@ -53,14 +57,25 @@ class TaskDao {
     //vizualizar tudo isso acontecendo
     print('Lista de tarefas $tarefas');
     return tarefas;
-}
+  }
 
   //procura por uma tarefa
-  Future<List<Task>> find(String nomeDaTarefa) async{
+  Future<List<Task>> find(String nomeDaTarefa) async {
     print('Acessando fin: ');
-    //acessar e abrir o bd igual no find ALl
+
+    //acessar e abrir o bd igual no find findAll
+    final Database bancoDeDados = await getDatabase();
+
+    //buscar por um especifico pelo nome
+    final List<Map<String, dynamic>> result = await bancoDeDados.query(
+      _tablename,
+      where: '$_name = ?',
+      whereArgs: [nomeDaTarefa],
+    );
+    print('Tarefa encontrada: ${toList(result)}');
+    return toList(result);
   }
 
   //deletar uma tarefa
-  delete(String nomeDaTarefa) async{}
-  }
+  delete(String nomeDaTarefa) async {}
+}
