@@ -21,7 +21,28 @@ class TaskDao {
 
   //ações (metodos) do banco de dados que ficarao em outro arquivo
 
-  save(Task tarefa) async {}
+  //salvar uma tarefa
+  save(Task tarefa) async {
+    print('Iniciando o save: ');
+    final Database bancoDeDados = await getDatabase();
+
+    //verificar se o que estamos salvando ja existe
+    var itemExists = await find(tarefa.nome);
+    if (itemExists.isEmpty) {
+      print('A tarefa nao existia.');
+      return await bancoDeDados.insert(_tablename, values);
+    }
+    //atualizar a tarefa ja existente
+    else {
+      print('A tarefa ja existia!');
+      return await bancoDeDados.update(
+        _tablename,
+        values,
+        where: '$_name = ?',
+        whereArgs: [tarefa.nome],
+      );
+    }
+  }
 
   //retorna uma lista de tarefas do bd
   Future<List<Task>> findAll() async {
@@ -67,6 +88,9 @@ class TaskDao {
     final Database bancoDeDados = await getDatabase();
 
     //buscar por um especifico pelo nome
+    //bancoDeDados’ é o local onde nossos dados estão armazenados;
+    //O ‘where’ é o parâmetro que pede o que vamos buscar;
+    //O ‘whereArgs’ é o nome de comparação, necessário para verificar se a pessoa está na tabela.
     final List<Map<String, dynamic>> result = await bancoDeDados.query(
       _tablename,
       where: '$_name = ?',
