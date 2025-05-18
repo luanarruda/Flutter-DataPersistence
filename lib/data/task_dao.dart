@@ -4,7 +4,6 @@ import 'package:alura_flutter/data/database.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart'; // import do uuid
 
-
 import '../components/task.dart';
 
 //nomes com _ pois é privado
@@ -35,23 +34,41 @@ class TaskDao {
 
     //verificar se o que estamos salvando ja existe
     var itemExists = await find(tarefa.nome);
+
+    //utilizando o metodo que criamos para transformar tarefa em map
+    Map<String, dynamic> taskMap = toMap(tarefa);
     if (itemExists.isEmpty) {
       print('A tarefa nao existia.');
 
       // gera um id novo e adiciona ao mapa
-      values[_id] = uuid.v4();
-      return await bancoDeDados.insert(_tablename, values);
+      taskMap[_id] = uuid.v4();
+      return await bancoDeDados.insert(_tablename, taskMap);
     }
-    //atualizar a tarefa ja existente
+    //atualizar a tarefa ja existente = update
     else {
       print('A tarefa ja existia!');
       return await bancoDeDados.update(
         _tablename,
-        values,
+        taskMap,
         where: '$_name = ?',
         whereArgs: [tarefa.nome],
       );
     }
+  }
+
+  //COnvertendo tarefa em Map
+  //sempre que usarmos este metodo, buscaremos uma "tarefa para inserir dentro"
+  Map<String, dynamic> toMap(Task tarefa) {
+    print('Convertendo Tarefa em Map: ');
+    final Map<String, dynamic> mapaDeTarefas = Map();
+    mapaDeTarefas[_name] = tarefa.nome;
+    mapaDeTarefas[_difficulty] = tarefa.dificuldade;
+    mapaDeTarefas[_image] = tarefa.foto;
+
+    //vizualizar o sucesso na transformacao
+    print("Mapa de tarefas: $mapaDeTarefas");
+
+    return mapaDeTarefas;
   }
 
   //retorna uma lista de tarefas do bd
