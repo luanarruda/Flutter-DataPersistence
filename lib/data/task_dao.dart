@@ -2,6 +2,8 @@
 //1° responsabilidade = tabela
 import 'package:alura_flutter/data/database.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:uuid/uuid.dart'; // import do uuid
+
 
 import '../components/task.dart';
 
@@ -9,15 +11,20 @@ import '../components/task.dart';
 class TaskDao {
   //"static" tabela vai ter o mesmo valor pra qq instancia de objetocriado com a taskdao
   static const String tableSql = 'CREATE TABLE $_tablename('
+      '$_id TEXT PRIMARY KEY, '
       '$_name TEXT, '
       '$_difficulty INTEGER, '
       '$_image TEXT)';
 
 //define de fato o nome das categorias
+  static const String _id = 'id'; // nova coluna
   static const String _tablename = 'taskTable';
   static const String _difficulty = 'difficulty';
   static const String _name = 'name';
   static const String _image = 'image';
+
+  // instância do UUID
+  final uuid = Uuid();
 
   //ações (metodos) do banco de dados que ficarao em outro arquivo
 
@@ -30,6 +37,9 @@ class TaskDao {
     var itemExists = await find(tarefa.nome);
     if (itemExists.isEmpty) {
       print('A tarefa nao existia.');
+
+      // gera um id novo e adiciona ao mapa
+      values[_id] = uuid.v4();
       return await bancoDeDados.insert(_tablename, values);
     }
     //atualizar a tarefa ja existente
