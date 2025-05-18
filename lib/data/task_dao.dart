@@ -56,7 +56,7 @@ class TaskDao {
     }
   }
 
-  //COnvertendo tarefa em Map
+  //Convertendo tarefa em Map
   //sempre que usarmos este metodo, buscaremos uma "tarefa para inserir dentro"
   Map<String, dynamic> toMap(Task tarefa) {
     print('Convertendo Tarefa em Map: ');
@@ -75,13 +75,13 @@ class TaskDao {
   Future<List<Task>> findAll() async {
     print('Acessando o FindAll: ');
     final Database bancoDeDados =
-        await getDatabase(); //await pq é um feature, entao tem q esperar o banco de dados ser encontrado ou construido para vincular no nosso db
+    await getDatabase(); //await pq é um feature, entao tem q esperar o banco de dados ser encontrado ou construido para vincular no nosso db
 
     //os objetos que vamos pegar do db, vem em tipo de Mapa, ent cada tarefa tem uma imagem, nome, valor especifico
     //a chave do mapa sempre serao strings e os valores podem ser alterados(dynamic)
     //mapa do tpo string e dinamico
     final List<Map<String, dynamic>> result =
-        await bancoDeDados.query(_tablename);
+    await bancoDeDados.query(_tablename);
     print('Procurando dados no banco de dados... encontrado: $result');
 
     // o metodo find all precisa retornar algo - todo metodo precisa retornar algo
@@ -128,5 +128,14 @@ class TaskDao {
   }
 
   //deletar uma tarefa
-  delete(String nomeDaTarefa) async {}
+  delete(String nomeDaTarefa) async {
+    print('Deletando tarefa: $nomeDaTarefa');
+    final Database bancoDeDados = await getDatabase();
+    //retornar funcao q deleta a tarefa
+    return bancoDeDados.delete(
+      _tablename,
+      where: '$_name = ?',
+      whereArgs: [nomeDaTarefa],
+    );
+  }
 }
