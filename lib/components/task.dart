@@ -1,3 +1,4 @@
+import 'package:alura_flutter/data/task_dao.dart';
 import 'package:flutter/material.dart';
 
 import 'difficulty.dart';
@@ -6,9 +7,9 @@ class Task extends StatefulWidget {
   final String nome;
   final String foto;
   final int dificuldade;
+  int nivel = 0;
 
   Task(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
-  int nivel = 0;
 
   @override
   State<Task> createState() => _TaskState();
@@ -91,6 +92,9 @@ class _TaskState extends State<Task> {
                       height: 52,
                       width: 52,
                       child: ElevatedButton(
+                          onLongPress: () {
+                            TaskDao().delete(widget.nome);
+                          },
                           onPressed: () {
                             setState(() {
                               widget.nivel++;

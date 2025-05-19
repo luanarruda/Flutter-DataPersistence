@@ -15,7 +15,16 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: Container(), title: const Text('Tarefas')),
+      appBar: AppBar(
+          leading: Container(),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {});
+                },
+                icon: Icon(Icons.refresh))
+          ],
+          title: const Text('Tarefas')),
       body: Padding(
         padding: EdgeInsets.only(top: 8, bottom: 70),
 
