@@ -28,13 +28,34 @@ class _InitialScreenState extends State<InitialScreen> {
               switch (snapshot.connectionState) {
                 //alt enter no connection ele ja cria os casos faltantes
                 case ConnectionState.none:
-                  // TODO: Handle this case.
+                  return Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando'),
+                      ],
+                    ),
+                  );
                   break;
                 case ConnectionState.waiting:
-                  // TODO: Handle this case.
+                  return Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando'),
+                      ],
+                    ),
+                  );
                   break;
                 case ConnectionState.active:
-                  // TODO: Handle this case.
+                  return Center(
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                        Text('Carregando'),
+                      ],
+                    ),
+                  );
                   break;
                 case ConnectionState.done:
                   if (snapshot.hasData && items != null) {
@@ -47,9 +68,21 @@ class _InitialScreenState extends State<InitialScreen> {
                             return tarefa;
                           });
                     }
+                    return Center(
+                        child: Column(
+                      children: [
+                        Icon(Icons.error_outline, size: 128),
+                        Text(
+                          'Não há nenhuma Tarefa',
+                          style: TextStyle(fontSize: 32),
+                        ),
+                      ],
+                    ));
                   }
+                  return Text('Erro ao carregar Tarefas ');
                   break;
               }
+              return Text('Erro desconhecido ');
             }),
       ),
       floatingActionButton: FloatingActionButton(
