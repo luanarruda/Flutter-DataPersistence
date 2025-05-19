@@ -94,7 +94,11 @@ class _InitialScreenState extends State<InitialScreen> {
                 taskContext: context,
               ),
             ),
-          );
+
+            //manda a tela atualizar conforme o bd é atualizado (adcionado tarefa)
+          ).then((value) => setState(() {
+                print('Recarregando a tela inicial');
+              }));
         },
         child: const Icon(Icons.add),
       ),
