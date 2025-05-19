@@ -1,4 +1,5 @@
-
+import 'package:alura_flutter/components/task.dart';
+import 'package:alura_flutter/data/task_dao.dart';
 import 'package:alura_flutter/data/task_inherited.dart';
 import 'package:alura_flutter/screens/form-screen.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +16,27 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(leading: Container(), title: const Text('Tarefas')),
-      body: ListView(
-        children: TaskInherited.of(context).taskList,
-        // of context= dentro do contexto
+      body: Padding(
         padding: EdgeInsets.only(top: 8, bottom: 70),
+        child: FutureBuilder<List<Task>>(
+            future: TaskDao().findAll(), builder: (context, snapshot) {
+          List<Task>? items = snapshot.data;
+          //itemCount verifica o tamanho da nossa lista antes de construir na tela
+          return ListView.builder(itemCount: items.length, itemBuilder: (BuildContext context, int index){
+            final Task tarefa =  items[index];
+            return tarefa;
+          });
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (contextNew) => FormScreen(taskContext: context,),
+              builder: (contextNew) =>
+                  FormScreen(
+                    taskContext: context,
+                  ),
             ),
           );
         },
