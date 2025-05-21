@@ -1,16 +1,32 @@
-# alura_flutter
+# Lista de Tarefas 🗂️📱
 
-A new Flutter project.
+Um app de gerenciamento de tarefas desenvolvido com Flutter, com foco em persistência de dados local.
 
-## Getting Started
+## ✨ Sobre o projeto
 
-This project is a starting point for a Flutter application.
+A **Lista de Tarefas** é um aplicativo simples e intuitivo que permite criar e gerenciar tarefas de forma eficiente. O objetivo é praticar conceitos de desenvolvimento mobile com Flutter, especialmente relacionados à persistência de dados e à construção de UI reativa.
 
-A few resources to get you started if this is your first Flutter project:
+## 🔧 Funcionalidades
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- ✅ **Adicionar novas tarefas** com nome, nível de dificuldade e imagem.
+- 📊 **Barra de progresso dinâmica**: quanto maior a dificuldade, mais passos são necessários para completar a tarefa.
+- 🔁 **Progresso da tarefa**: avance apertando o botão "Up" até atingir 100%.
+- 🗑️ **Excluir tarefas** do app.
+- 💾 **Persistência de dados**: as tarefas são salvas localmente, mantendo as informações mesmo após fechar o app.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📷 Capturas de tela
+
+### 📭 Tela inicial sem tarefas
+![Tela inicial sem tarefas](./assets/telaInicial.png)
+
+### ➕ Formulário de nova tarefa
+![Formulário de nova tarefa](./assets/formulario.png)
+
+### 📈 Tela com tarefas e progresso
+![Tela com tarefas](./assets/tarefaSalva.png)
+
+## 🚀 Tecnologias utilizadas
+
+- [Flutter](https://flutter.dev/)
+- [Dart](https://dart.dev/)
+- Armazenamento local (Provider)
