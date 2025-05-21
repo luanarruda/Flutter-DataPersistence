@@ -17,13 +17,13 @@ A **Lista de Tarefas** é um aplicativo simples e intuitivo que permite criar e 
 ## 📷 Capturas de tela
 
 ### 📭 Tela inicial sem tarefas
-![Tela inicial sem tarefas](/assets/telaInicial.png)
+![Tela inicial sem tarefas](/assets/images/telaInicial.png)
 
 ### ➕ Formulário de nova tarefa
-![Formulário de nova tarefa](/assets/formulario.png)
+![Formulário de nova tarefa](/assets/images/formulario.png)
 
 ### 📈 Tela com tarefas e progresso
-![Tela com tarefas](/assets/tarefaSalva.png)
+![Tela com tarefas](/assets/images/tarefaSalva.png)
 
 ## 🚀 Tecnologias utilizadas
 
